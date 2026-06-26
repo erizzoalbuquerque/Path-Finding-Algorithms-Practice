@@ -4,12 +4,12 @@ project(dijkstra_cpp CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_library(dijkstra_lib STATIC
+add_library(dijkstra STATIC
     src/graph.cpp
     src/dijkstra.cpp
 )
 
-target_include_directories(dijsktra_lib PUBLIC include)
+target_include_directories(dijkstra PUBLIC include)
 
-add_executable(dijkstra src/main.cpp)
-target_link_libraries(dijkstra PRIVATE dijkstra_lib)
+add_executable(dijkstra_app src/main.cpp)
+target_link_libraries(dijkstra_app PRIVATE dijkstra)
