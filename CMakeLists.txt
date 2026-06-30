@@ -8,8 +8,12 @@ add_library(dijkstra STATIC
     src/graph.cpp
     src/dijkstra.cpp
 )
-
 target_include_directories(dijkstra PUBLIC include)
+
+add_library(vec2 STATIC
+    src/vec2.cpp
+)
+target_include_directories(vec2 PUBLIC include)
 
 add_executable(dijkstra_app src/main.cpp)
 target_link_libraries(dijkstra_app PRIVATE dijkstra)
@@ -21,3 +25,8 @@ add_executable(dijkstra_tests tests/test_dijkstra.cpp)
 target_link_libraries(dijkstra_tests PRIVATE dijkstra GTest::gtest GTest::gtest_main)
 
 add_test(NAME dijkstra_tests COMMAND dijkstra_tests)
+
+add_executable(vec2_tests tests/test_vec2.cpp)
+target_link_libraries(vec2_tests PRIVATE vec2 GTest::gtest GTest::gtest_main)
+
+add_test(NAME vec2_tests COMMAND vec2_tests)
