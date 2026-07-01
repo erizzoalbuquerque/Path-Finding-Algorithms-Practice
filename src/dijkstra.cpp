@@ -40,7 +40,7 @@ std::vector<int> dijkstra(const Graph& graph, int source, int target)
         return {source};
     }
     
-    std::vector<int> dist(graph.num_vertices(), std::numeric_limits<int>::max());
+    std::vector<float> dist(graph.num_vertices(), std::numeric_limits<float>::max());
     dist[source] = 0;
 
     std::vector<bool> visited(graph.num_vertices(), false);
@@ -48,17 +48,17 @@ std::vector<int> dijkstra(const Graph& graph, int source, int target)
     std::vector<int> predecessor(graph.num_vertices(), -1);
 
     std::priority_queue<
-        std::pair<int,int>,
-        std::vector<std::pair<int,int>>,
-        std::greater<std::pair<int,int>>
+        std::pair<float,int>,
+        std::vector<std::pair<float,int>>,
+        std::greater<std::pair<float,int>>
         > pq;
-    pq.push({0,source});
+    pq.push({0.f,source});
 
     while (!pq.empty())
     {
-        std::pair<int,int> top = pq.top();
+        std::pair<float,int> top = pq.top();
 
-        //int current_distance = top.first;
+        //float current_distance = top.first;
         //int exploring_node = top.second; 
         auto [current_distance, exploring_node] = pq.top();
 
@@ -80,9 +80,9 @@ std::vector<int> dijkstra(const Graph& graph, int source, int target)
         for (const auto&[next_node,edge_weight] : neighbors)
         {
             //int next_node = neighbor.first;
-            //int edge_weight = neighbor.second;
+            //float edge_weight = neighbor.second;
 
-            int new_distance = current_distance + edge_weight;
+            float new_distance = current_distance + edge_weight;
             if (new_distance < dist[next_node])
             {
                 dist[next_node] = new_distance;

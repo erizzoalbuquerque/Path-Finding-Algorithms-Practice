@@ -5,7 +5,7 @@ Graph::Graph(int num_vertices) : num_vertices_(num_vertices), adj_list_(num_vert
 {
 }
 
-void Graph::add_edge(int u, int v,int weight, bool directed)
+void Graph::add_edge(int u, int v,float weight, bool directed)
 {
     assert(u >= 0 && u < num_vertices_);
 
