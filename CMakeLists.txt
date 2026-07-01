@@ -4,11 +4,12 @@ project(dijkstra_cpp CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_library(dijkstra STATIC
+add_library(pathfinding STATIC
     src/graph.cpp
     src/dijkstra.cpp
+    src/pathfinding_utils.cpp
 )
-target_include_directories(dijkstra PUBLIC include)
+target_include_directories(pathfinding PUBLIC include)
 
 add_library(vec2 STATIC
     src/vec2.cpp
@@ -16,13 +17,13 @@ add_library(vec2 STATIC
 target_include_directories(vec2 PUBLIC include)
 
 add_executable(dijkstra_app src/main.cpp)
-target_link_libraries(dijkstra_app PRIVATE dijkstra)
+target_link_libraries(dijkstra_app PRIVATE pathfinding)
 
 enable_testing()
 find_package(GTest CONFIG REQUIRED)
 
 add_executable(dijkstra_tests tests/test_dijkstra.cpp)
-target_link_libraries(dijkstra_tests PRIVATE dijkstra GTest::gtest GTest::gtest_main)
+target_link_libraries(dijkstra_tests PRIVATE pathfinding GTest::gtest GTest::gtest_main)
 
 add_test(NAME dijkstra_tests COMMAND dijkstra_tests)
 

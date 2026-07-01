@@ -4,4 +4,7 @@
 #include <vector>
 #include <functional>
 
-std::vector<int> a_star(const Graph& graph, int source, int target, std::function<float(int, int)> heuristic);
+namespace pathfinding
+{
+    std::vector<int> a_star(const Graph& graph, int source, int target, std::function<float(int,int)> heuristic);
+}

@@ -1,6 +1,8 @@
 #include <gtest/gtest.h>
 #include "../include/dijkstra.hpp"
 
+using namespace pathfinding;
+
 TEST(DijkstraTest, BasicPath)
 {
     Graph graph(5);

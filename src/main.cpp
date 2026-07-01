@@ -3,6 +3,8 @@
 
 int main()
 {
+    using namespace pathfinding;
+    
     Graph graph(5);
 
     graph.add_edge(0,1,4,true);
