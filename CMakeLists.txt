@@ -7,6 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_library(pathfinding STATIC
     src/graph.cpp
     src/dijkstra.cpp
+    src/a_star.cpp
     src/pathfinding_utils.cpp
 )
 target_include_directories(pathfinding PUBLIC include)
@@ -16,8 +17,11 @@ add_library(vec2 STATIC
 )
 target_include_directories(vec2 PUBLIC include)
 
-add_executable(dijkstra_app src/main.cpp)
+add_executable(dijkstra_app src/main_dijkstra.cpp)
 target_link_libraries(dijkstra_app PRIVATE pathfinding)
+
+add_executable(astar_app src/main_astar.cpp)
+target_link_libraries(astar_app PRIVATE pathfinding vec2)
 
 enable_testing()
 find_package(GTest CONFIG REQUIRED)

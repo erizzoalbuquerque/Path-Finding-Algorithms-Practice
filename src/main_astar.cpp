@@ -1,0 +1,56 @@
+#include "../include/a_star.hpp"
+#include "../include/graph.hpp"
+#include "../include/vec2.hpp"
+#include <vector>
+#include <iostream>
+
+using namespace pathfinding;
+using namespace math;
+
+void add_edges_from_position(int first, int second, Graph& graph, const std::vector<Vec2>& positions)
+{
+    graph.add_edge(first, second, Vec2::distance(positions[first], positions[second]));
+}
+
+int main()
+{
+    // Create map
+    std::vector<Vec2> positions {
+        {2.f, 7.f}, //A
+        {4.f, 6.f}, //B
+        {-2.f, 8.f}, //C
+        {-9.f, 3.f}, //D
+        {6.f, -1.f}, //E
+        {-5.f, 3.f}, //F
+        {10.f, 1.f} //G
+    };    
+    
+    Graph graph(7);
+
+    add_edges_from_position(0, 1, graph, positions); //A-B
+    add_edges_from_position(0, 2, graph, positions); //A-C
+    add_edges_from_position(0, 5, graph, positions); //A-F
+    add_edges_from_position(1, 3, graph, positions); //B-D
+    add_edges_from_position(1, 4, graph, positions); //B-E
+    add_edges_from_position(3, 4, graph, positions); //D-E
+    add_edges_from_position(4, 5, graph, positions); //E-F
+    add_edges_from_position(4, 6, graph, positions); //E-G
+    add_edges_from_position(5, 6, graph, positions); //F-G
+
+    auto distance_heuristic = [&positions](int nodeA, int nodeB){
+        return Vec2::distance(positions[nodeA],positions[nodeB]);
+    };
+
+    std::vector<int> best_path = a_star(graph, 0, 6, distance_heuristic);
+
+    std::cout << "Best path is: " << std::endl;
+    for(int i=0; i < best_path.size() ; i++)
+    {
+        if (i > 0) std::cout <<",";
+
+        std::cout << best_path[i];
+    }
+    std::cout << std::endl;
+    
+    return 0;
+}

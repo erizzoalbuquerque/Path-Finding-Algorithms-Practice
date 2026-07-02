@@ -8,7 +8,7 @@
 
 namespace pathfinding
 {
-    std::vector<int> a_star(const Graph& graph, int source, int target, std::function<float(int,int)> heuristic)
+    std::vector<int> a_star(const Graph& graph, int source, int target, const std::function<float(int,int)>& heuristic)
     {
         //assert source and target are valid
         assert(source >= 0 && source < graph.num_vertices());
