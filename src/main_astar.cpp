@@ -1,6 +1,7 @@
 #include "../include/a_star.hpp"
 #include "../include/graph.hpp"
 #include "../include/vec2.hpp"
+#include "../include/pathfinding_utils.hpp"
 #include <vector>
 #include <iostream>
 
@@ -43,14 +44,7 @@ int main()
 
     std::vector<int> best_path = a_star(graph, 0, 6, distance_heuristic);
 
-    std::cout << "Best path is: " << std::endl;
-    for(int i=0; i < best_path.size() ; i++)
-    {
-        if (i > 0) std::cout <<",";
-
-        std::cout << best_path[i];
-    }
-    std::cout << std::endl;
+    print_path(best_path);
     
     return 0;
 }

@@ -1,5 +1,6 @@
 #include <iostream>
 #include "../include/dijkstra.hpp"
+#include "../include/pathfinding_utils.hpp"
 
 int main()
 {
@@ -17,14 +18,7 @@ int main()
 
     std::vector<int> best_path = dijkstra(graph,0,4);
 
-    std::cout << "Best path is: " << std::endl;
-    for (int i = 0; i < best_path.size(); i++)
-    {
-        if (i > 0)
-            std::cout << ", ";
-        std::cout << best_path[i]; 
-    }
-    std::cout << "." << std::endl;
+    print_path(best_path);
 
     return 0;
 }

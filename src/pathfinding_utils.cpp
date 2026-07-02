@@ -1,5 +1,6 @@
 #include "../include/pathfinding_utils.hpp"
 #include <deque>
+#include <iostream>
 
 namespace pathfinding
 {
@@ -23,5 +24,23 @@ namespace pathfinding
         } 
         
         return std::vector<int>(shortest_path.begin(), shortest_path.end());
+    }
+
+    void print_path(const std::vector<int>& path)
+    {
+        if (path.empty())
+        {
+            std::cout << "No path to print." << std::endl;
+            return;
+        }
+
+        std::cout << "Best path is: " << std::endl;
+        for(int i=0; i <path.size() ; i++)
+        {
+            if (i > 0) std::cout <<",";
+
+            std::cout << path[i];
+        }
+        std::cout << "." << std::endl;
     }
 }
