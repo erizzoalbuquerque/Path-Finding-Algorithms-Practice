@@ -14,6 +14,7 @@ namespace pathfinding
         const std::vector<Neighbor>& neighbors(int u) const;
         int num_vertices() const;
         void print_neighbors(int node) const;
+        float get_path_length(const std::vector<int>& path) const;
 
     private:
         int num_vertices_;

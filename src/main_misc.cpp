@@ -13,37 +13,6 @@ void add_edges_from_position(int first, int second, Graph& graph, const std::vec
     graph.add_edge(first, second, Vec2::distance(positions[first], positions[second]));
 }
 
-float get_path_length(const std::vector<int>& path, const Graph& graph)
-{
-    float length = 0.f;
-
-    for (std::size_t i=0; i < path.size(); ++i)
-    {
-        if (i == path.size() -1)
-            break;
-            
-        int current_node = path[i];
-        int next_node = path[i+1];
-
-        const auto& neighbors = graph.neighbors(current_node);
-        
-        auto it = std::find_if(neighbors.begin(),neighbors.end(),[next_node](const Graph::Neighbor& neighbor){
-            return neighbor.first == next_node;
-        });
-
-        if (it != neighbors.end())
-        {
-            length += it->second;
-        }
-        else
-        {
-            return -1.f; // No path. Return error value
-        }
-    }
-
-    return length;
-}
-
 int main()
 {
     // Create map
@@ -75,9 +44,9 @@ int main()
         graph.print_neighbors(i);
     }
 
-    std::cout << "Path length (0->1->4->6): " << get_path_length({0,1,4,6}, graph) << std::endl;
-    std::cout << "Path length (0->5->6): " << get_path_length({0,5,6}, graph) << std::endl;
-    std::cout << "Path length (0->1->3->4->6): " << get_path_length({0,1,3,4,6}, graph) << std::endl;
+    std::cout << "Path length (0->1->4->6): " << graph.get_path_length({0,1,4,6}) << std::endl;
+    std::cout << "Path length (0->5->6): " << graph.get_path_length({0,5,6}) << std::endl;
+    std::cout << "Path length (0->1->3->4->6): " << graph.get_path_length({0,1,3,4,6}) << std::endl;
 
     return 0;
 }

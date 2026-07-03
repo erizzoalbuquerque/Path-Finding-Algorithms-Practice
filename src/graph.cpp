@@ -41,4 +41,35 @@ namespace pathfinding
         }
         std::cout << std::endl;
     }
+
+    float Graph::get_path_length(const std::vector<int>& path) const
+    {
+        float length = 0.f;
+
+        for (std::size_t i=0; i < path.size(); ++i)
+        {
+            if (i == path.size() -1)
+                break;
+                
+            int current_node = path[i];
+            int next_node = path[i+1];
+
+            const auto& neighbors = this->neighbors(current_node);
+            
+            auto it = std::find_if(neighbors.begin(),neighbors.end(),[next_node](const Graph::Neighbor& neighbor){
+                return neighbor.first == next_node;
+            });
+
+            if (it != neighbors.end())
+            {
+                length += it->second;
+            }
+            else
+            {
+                return -1.f; // No path. Return error value
+            }
+        }
+
+        return length;
+    }
 }
