@@ -1,5 +1,6 @@
 #include "../include/graph.hpp"
 #include <cassert>
+#include <iostream>
 
 namespace pathfinding
 {
@@ -27,5 +28,17 @@ namespace pathfinding
     int Graph::num_vertices() const
     {
         return num_vertices_;
+    }
+
+    void Graph::print_neighbors(int node) const
+    {
+        assert(node >= 0 && node < num_vertices_);
+
+        std::cout << "Neighbors of node " << node << ": ";
+        for (const auto& neighbor : adj_list_[node])
+        {
+            std::cout << "(" << neighbor.first << ", weight: " << neighbor.second << ") ";
+        }
+        std::cout << std::endl;
     }
 }

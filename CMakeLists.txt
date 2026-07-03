@@ -23,6 +23,9 @@ target_link_libraries(dijkstra_app PRIVATE pathfinding)
 add_executable(astar_app src/main_astar.cpp)
 target_link_libraries(astar_app PRIVATE pathfinding vec2)
 
+add_executable(misc_app src/main_misc.cpp)
+target_link_libraries(misc_app PRIVATE pathfinding vec2)
+
 enable_testing()
 find_package(GTest CONFIG REQUIRED)
 
