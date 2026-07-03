@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../include/graph.hpp"
+#include "graph.hpp"
 #include <vector>
 
 namespace pathfinding
