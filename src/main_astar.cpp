@@ -4,14 +4,10 @@
 #include "../include/pathfinding_utils.hpp"
 #include <vector>
 #include <iostream>
+#include "../include/utilities.hpp"
 
 using namespace pathfinding;
 using namespace math;
-
-void add_edges_from_position(int first, int second, Graph& graph, const std::vector<Vec2>& positions)
-{
-    graph.add_edge(first, second, Vec2::distance(positions[first], positions[second]));
-}
 
 int main()
 {
