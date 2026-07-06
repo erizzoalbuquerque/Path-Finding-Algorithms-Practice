@@ -34,6 +34,11 @@ target_link_libraries(dijkstra_tests PRIVATE pathfinding GTest::gtest GTest::gte
 
 add_test(NAME dijkstra_tests COMMAND dijkstra_tests)
 
+add_executable(astar_tests tests/test_astar.cpp)
+target_link_libraries(astar_tests PRIVATE vec2 pathfinding GTest::gtest GTest::gtest_main)
+
+add_test(NAME astar_tests COMMAND astar_tests)
+
 add_executable(vec2_tests tests/test_vec2.cpp)
 target_link_libraries(vec2_tests PRIVATE vec2 GTest::gtest GTest::gtest_main)
 
