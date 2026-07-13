@@ -29,6 +29,14 @@ target_link_libraries(misc_app PRIVATE pathfinding vec2)
 add_executable(timing_app src/main_timing.cpp)
 target_link_libraries(timing_app PRIVATE pathfinding vec2)
 
+add_executable(maze_app
+    src/main_maze.cpp
+    src/maze/maze.cpp 
+    src/maze/maze_renderer.cpp
+    src/maze/recursive_backtracker.cpp
+    )
+target_include_directories(maze_app PRIVATE include)
+
 enable_testing()
 find_package(GTest CONFIG REQUIRED)
 
